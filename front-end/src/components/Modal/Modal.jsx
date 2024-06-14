@@ -1,11 +1,18 @@
-import React, { Children } from "react";
+import React from "react";
 import styles from "./Modal.module.css";
+import { useNavigate } from "react-router-dom";
 
-export default function Modal({ children, isOpen, closeModal }) {
+export default function Modal({ children }) {
+  const navigate = useNavigate();
+
+  const closeHandler = () => {
+    navigate("..");
+  };
+
   return (
     <>
-      <div className={styles.backdrop} onClick={closeModal} />
-      <dialog open={isOpen} className={styles.modal}>
+      <div className={styles.backdrop} onClick={closeHandler} />
+      <dialog open className={styles.modal}>
         {children}
       </dialog>
     </>
